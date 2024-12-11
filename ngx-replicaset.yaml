@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: ngx-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx  # Ensure this matches the app label below
+  template:
+    metadata:
+      name: nginx-pod1
+      labels:
+        team: integration
+        app: nginx  # Match this label with the selector above
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
